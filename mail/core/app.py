@@ -5,6 +5,7 @@ from mail.utils.utilities import load_secret
 from mail.utils.colors import *
 
 from mail.routes.index import index
+from mail.routes.login import login
 
 import os
 
@@ -18,6 +19,7 @@ app = Flask(
 app.config["SECRET_KEY"] = load_secret()
 
 app.add_url_rule("/", view_func=index)
+app.add_url_rule("/login", view_func=login)
 
 
 class App:
