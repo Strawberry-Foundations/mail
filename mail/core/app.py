@@ -1,7 +1,11 @@
+import flask
 from flask import Flask
 
 from mail.core.config import *
 from mail.tools.utilities import load_secret
+
+from mail.routes.index import index
+
 
 app = Flask(
     __name__,
@@ -12,3 +16,4 @@ app = Flask(
 
 app.config["SECRET_KEY"] = load_secret()
 
+app.add_url_rule("/", view_func=index)
