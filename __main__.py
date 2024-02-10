@@ -1,6 +1,7 @@
-from mail.core.app import app
-from mail.core.config import Config
+from mail.core.app import App, app
+
+runtime = App(app)
 
 if __name__ == "__main__":
-    app.run(host=Config.address, port=Config.port, debug=Config.debug_mode, threaded=Config.threaded)
-    
+    runtime.setup()
+    runtime.run()
