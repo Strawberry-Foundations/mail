@@ -3068,6 +3068,26 @@ ul, ol {
 .mdl-color-text--accent-contrast {
   color: rgb(255,255,255) !important; }
 
+
+
+
+.mdl-color--dark-gray {
+  background-color: rgb(21, 22, 22) !important;
+}
+
+.mdl-color--accent {
+  background-color: rgb(255,64,129) !important;
+}
+
+.mdl-color-text--dark-gray {
+  color: rgb(18, 18, 18) !important;
+}
+
+.mdl-color-text--accent {
+  color: rgb(255,64,129) !important;
+}
+
+
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *
