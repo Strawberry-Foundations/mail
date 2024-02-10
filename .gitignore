@@ -154,5 +154,5 @@ cython_debug/
 
 # Custom
 .idea/
-tools/
+/tools
 secret.key
