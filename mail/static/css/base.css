@@ -8,3 +8,12 @@
 .content * {
     font-family: 'Rubik', sans-serif;
 }
+
+.navbar * {
+    font-family: 'Rubik', sans-serif;
+    text-decoration: none;
+}
+
+.navbar img {
+    margin-bottom: 3px;
+}
