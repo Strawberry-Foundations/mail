@@ -26,12 +26,13 @@ class App:
 
     def run(self, app_config: Config):
         if not app_config.debug_mode:
-            combined_path = os.path.join(self.app.root_path, self.app.template_folder)
-            absolute_path = os.path.abspath(combined_path)
+            template_absolute = os.path.abspath(os.path.join(self.app.root_path, self.app.template_folder))
+            static_absolute = os.path.abspath(os.path.join(self.app.root_path, self.app.static_folder))
 
             print(f"   {GREEN}{BOLD}{UNDERLINE}Thanks for using Strawberry Mail Server!{CRESET}")
             print(f"   {BLUE}{BOLD}Root Path:{CRESET} {self.app.root_path}")
-            print(f"   {BLUE}{BOLD}Template Path:{CRESET} {absolute_path}")
+            print(f"   {BLUE}{BOLD}Template Path:{CRESET} {template_absolute}")
+            print(f"   {BLUE}{BOLD}Static Path:{CRESET} {static_absolute}")
 
             print("")
 
