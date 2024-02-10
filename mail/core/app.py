@@ -1,4 +1,3 @@
-import flask
 from flask import Flask
 
 from mail.core.config import *
