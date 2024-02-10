@@ -2,3 +2,4 @@ flask~=3.0.1
 flask[async]~=3.0.1
 PyYAML~=6.0.1
 setuptools~=68.1.2
+colorama~=0.4.6
