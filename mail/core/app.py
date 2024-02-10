@@ -16,3 +16,15 @@ app = Flask(
 app.config["SECRET_KEY"] = load_secret()
 
 app.add_url_rule("/", view_func=index)
+
+
+class App:
+    def __init__(self, flask_app: Flask):
+        self.app = flask_app
+
+    def setup(self):
+        print("   Thanks for using Strawberry Mail Server!")
+        print(f"   Root Path: {self.app.root_path}")
+
+    def run(self):
+        self.app.run(host=Config.address, port=Config.port, debug=Config.debug_mode, threaded=Config.threaded)
