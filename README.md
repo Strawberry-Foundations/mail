@@ -1,0 +1,2 @@
+# mail
+Strawberry Mail Server
