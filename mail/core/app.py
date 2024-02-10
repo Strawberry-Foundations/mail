@@ -1,7 +1,7 @@
 from flask import Flask
 
 from mail.core.config import *
-from mail.tools.utilities import load_secret
+from mail.utils.utilities import load_secret
 
 from mail.routes.index import index
 
@@ -25,6 +25,8 @@ class App:
     def setup(self):
         print("   Thanks for using Strawberry Mail Server!")
         print(f"   Root Path: {self.app.root_path}")
+
+        print("")
 
     def run(self):
         self.app.run(host=Config.address, port=Config.port, debug=Config.debug_mode, threaded=Config.threaded)
