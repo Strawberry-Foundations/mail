@@ -15,3 +15,6 @@ invalid_credentials: E-Mail oder Passwort ist ungültig
 write: Schreiben
 inbox: Posteingang
 drafts: Entwürfe
+sent: Gesendet
+trash: Papierkorb
+marked: Markiert 
