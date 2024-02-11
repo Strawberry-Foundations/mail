@@ -1,22 +1,75 @@
 {% extends "base/base.html" %}
+
 {% block content %}
-<div class="content">
-  <ul>
-    {% for email in emails %}
-      <div class="email-list-container">
-        <a href="/webmail/inbox/{{ email.id }}">
-          <center>
-            <strong>{{ email.sender }}</strong>
-            <br>
-            <span>{{ email.subject }}</span>
-            <br>
-            <span>{{ email.date }}</span>
-            <br><br>
-          </center>
-        </a>
-      </div>
-    {% endfor %}
-  </ul>
+<div class="webmail-main-content">
+  <hr>
+  <div class="sidebar">
+    <center>
+      <a href="/webmail/write" class="mdl-button mdl-js-button btn--draft-new-mail">
+        <span class="material-symbols-outlined btn--draft-new-mail--icon">draw</span>
+        <p>{{ strings.load("write") }}</p>
+      </a>
+
+      <div class="sidebar--spacer"></div>
+
+      <a onclick="change_tab('inbox')" class="mdl-button mdl-js-button sidebar--button sidebar--button-active" href="#inbox">
+        <span class="material-symbols-outlined sidebar--button--icon">inbox</span>
+        <p>{{ strings.load("inbox") }}</p>
+      </a>
+      <a onclick="change_tab('drafts')" class="mdl-button mdl-js-button sidebar--button" href="#drafts">
+        <span class="material-symbols-outlined sidebar--button--icon">drafts</span>
+        <p>{{ strings.load("drafts") }}</p>
+      </a>
+      <a onclick="change_tab('sent')" class="mdl-button mdl-js-button sidebar--button" href="#sent">
+        <span class="material-symbols-outlined sidebar--button--icon">send</span>
+        <p>{{ strings.load("sent") }}</p>
+      </a>
+      <a onclick="change_tab('marked')" class="mdl-button mdl-js-button sidebar--button" href="#marked">
+        <span class="material-symbols-outlined sidebar--button--icon">label</span>
+        <p>{{ strings.load("marked") }}</p>
+      </a>
+      <a onclick="change_tab('trash')" class="mdl-button mdl-js-button sidebar--button" href="#trash">
+        <span class="material-symbols-outlined sidebar--button--icon">delete</span>
+        <p>{{ strings.load("trash") }}</p>
+      </a>
+    </center>
+  </div>  
+
+  <div class="webmail-content">
+    <div id="inbox" class="tab-content active-tab">
+      <h2>Inbox</h2>
+      <p>Hier ist der Inhalt für den Inbox-Tab.</p>
+    </div>
+  
+    <div id="sent" class="tab-content">
+      <h2>Sent</h2>
+      <p>Hier ist der Inhalt für den Sent-Tab.</p>
+    </div>
+  
+    <div id="drafts" class="tab-content">
+      <h2>Drafts</h2>
+      <p>Hier ist der Inhalt für den Drafts-Tab.</p>
+    </div>
+  </div>
 </div>
+
+<script src="/static/js/change_tab.js"></script>
+
+  <!-- 
+  {% for email in emails %}
+    <div class="email-list-container">
+      <a href="/webmail/inbox/{{ email.id }}">
+        <center>
+          <strong>{{ email.sender }}</strong>
+          <br>
+          <span>{{ email.subject }}</span>
+          <br>
+          <span>{{ email.date }}</span>
+          <br><br>
+        </center>
+      </a>
+    </div>
+  {% endfor %} -->
+
 
 {% endblock content %}
