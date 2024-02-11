@@ -2,4 +2,4 @@ from flask import redirect
 
 
 async def index():
-    return redirect("/dashboard")
+    return redirect("/webmail")
