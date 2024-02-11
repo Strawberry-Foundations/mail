@@ -7,12 +7,10 @@ import imaplib
 import socket
 
 
-def get_imap_connection():
-    if 'imap_connection' not in g:
-        connection = imaplib.IMAP4_SSL(config.imap_host, config.imap_port)
-        g.imap_connection = connection
-
-    return g.imap_connection
+class ImapServerException(Exception):
+    def __init__(self, message="Connection error"):
+        self.message = message
+        super().__init__(self.message)
 
 
 class ImapServer:
@@ -34,6 +32,18 @@ class ImapServer:
 
         return self.connection
 
+    def test_connection(self):
+        try:
+            status, folder_list = self.connection.list()
+
+            if status == 'OK':
+                return True
+            else:
+                raise ImapServerException
+
+        except:
+            raise ImapServerException
+
     def login(self, username, password):
         self.connection.login(username, password)
 
@@ -47,3 +57,12 @@ class ImapServer:
             return mailboxes
 
         return None
+
+
+def get_imap():
+    if 'imap' not in g:
+        connection = ImapServer(config.imap_host, config.imap_port)
+
+        g.imap = connection
+
+    return g.imap
