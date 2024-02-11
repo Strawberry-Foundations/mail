@@ -12,23 +12,23 @@
 
       <div class="sidebar--spacer"></div>
 
-      <a onclick="change_tab('inbox')" class="mdl-button mdl-js-button sidebar--button sidebar--button-active" href="#inbox">
+      <a onclick="changeTab('inbox'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="inbox-btn" href="#inbox">
         <span class="material-symbols-outlined sidebar--button--icon">inbox</span>
         <p>{{ strings.load("inbox") }}</p>
       </a>
-      <a onclick="change_tab('drafts')" class="mdl-button mdl-js-button sidebar--button" href="#drafts">
+      <a onclick="changeTab('drafts'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="drafts-btn" href="#drafts">
         <span class="material-symbols-outlined sidebar--button--icon">drafts</span>
         <p>{{ strings.load("drafts") }}</p>
       </a>
-      <a onclick="change_tab('sent')" class="mdl-button mdl-js-button sidebar--button" href="#sent">
+      <a onclick="changeTab('sent'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="sent-btn" href="#sent">
         <span class="material-symbols-outlined sidebar--button--icon">send</span>
         <p>{{ strings.load("sent") }}</p>
       </a>
-      <a onclick="change_tab('marked')" class="mdl-button mdl-js-button sidebar--button" href="#marked">
+      <a onclick="changeTab('marked'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="marked-btn" href="#marked">
         <span class="material-symbols-outlined sidebar--button--icon">label</span>
         <p>{{ strings.load("marked") }}</p>
       </a>
-      <a onclick="change_tab('trash')" class="mdl-button mdl-js-button sidebar--button" href="#trash">
+      <a onclick="changeTab('trash'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="trash-btn" href="#trash">
         <span class="material-symbols-outlined sidebar--button--icon">delete</span>
         <p>{{ strings.load("trash") }}</p>
       </a>
@@ -50,10 +50,20 @@
       <h2>Drafts</h2>
       <p>Hier ist der Inhalt für den Drafts-Tab.</p>
     </div>
+
+    <div id="marked" class="tab-content">
+      <h2>Drafts</h2>
+      <p>Hier ist der Inhalt für den Drafts-Tab.</p>
+    </div>
+
+    <div id="trash" class="tab-content">
+      <h2>Drafts</h2>
+      <p>Hier ist der Inhalt für den Drafts-Tab.</p>
+    </div>
   </div>
 </div>
 
-<script src="/static/js/change_tab.js"></script>
+<script src="/static/js/webmail_tab.js"></script>
 
   <!-- 
   {% for email in emails %}
