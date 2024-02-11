@@ -1,20 +1,23 @@
 from flask import Flask
 
-from mail.core.config import *
+from mail import server_dir
+from mail.core.config import Config, config
 from mail.utils.utilities import load_secret
 from mail.utils.colors import *
 
 from mail.routes.index import index
 from mail.routes.login import login
 from mail.routes.api.callback import callback
+from mail.routes.user.dashboard import dashboard
 
 import os
 
+
 app = Flask(
     __name__,
-    static_url_path=static_url_path,
-    static_folder=static_folder,
-    template_folder=template_folder
+    static_url_path=config.static_url_path,
+    static_folder=config.static_folder,
+    template_folder=config.template_folder
 )
 
 app.config["SECRET_KEY"] = load_secret()
@@ -22,8 +25,7 @@ app.config["SECRET_KEY"] = load_secret()
 app.add_url_rule("/", view_func=index)
 app.add_url_rule("/login", view_func=login, methods={"GET", "POST"})
 app.add_url_rule("/callback", view_func=callback)
-
-config = Config()
+app.add_url_rule("/dashboard", view_func=dashboard)
 
 
 class App:
