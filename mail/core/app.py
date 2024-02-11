@@ -27,7 +27,7 @@ app.add_url_rule("/", view_func=index)
 app.add_url_rule("/login", view_func=login, methods={"GET", "POST"})
 app.add_url_rule("/callback", view_func=callback)
 app.add_url_rule("/dashboard", view_func=dashboard)
-app.add_url_rule("/inbox/<str:email_id>", view_func=inbox)
+app.add_url_rule("/inbox/<string:email_id>", view_func=inbox)
 
 imap = ImapServer(config.imap_host, config.imap_port)
 imap.connect()
