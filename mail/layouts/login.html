@@ -8,16 +8,16 @@
       <img src="/static/assets/svg/strawberry_foundations.svg" alt="Strawberry Foundations Logo" width="200px">
 
       <div class="login-box">
-        <h3>Willkommen zurück! {{ lang }}</h3>
+        <h3>{{ strings.load("welcome_back") }}</h3>
         <form action="" method="post">
           <div class="input-box--text">
-            <h5>Benutzername</h5>
+            <h5>{{ strings.load("username") }}</h5>
             <input class="input-field fg-white" type="text" id="email">
             <script>unfocus('email')</script>
           </div>
           
           <div class="input-box--text">
-            <h5>Passwort</h5>
+            <h5>{{ strings.load("password") }}</h5>
             <input class="input-field fg-white" type="password" id="password">
             <script>unfocus('password')</script>
           </div>
