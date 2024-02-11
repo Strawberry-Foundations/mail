@@ -4,7 +4,6 @@ from flask import render_template, request, redirect, session
 
 from mail.core.locale import get_preferred_language, Strings
 from mail.core.config import config
-from mail.core.mail import imap
 from mail.imap.client import get_imap_connection
 from mail.core.logger import logger
 from mail import STRAWBERRY_ID_URL
