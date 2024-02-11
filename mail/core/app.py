@@ -9,7 +9,7 @@ from mail.imap.client import ImapServer
 from mail.routes.index import index
 from mail.routes.login import login
 from mail.routes.api.callback import callback
-from mail.routes.user.dashboard import dashboard
+from mail.routes.user.webmail import webmail
 from mail.routes.user.inbox import inbox
 
 import os
@@ -26,7 +26,7 @@ app.config["SECRET_KEY"] = load_secret()
 app.add_url_rule("/", view_func=index)
 app.add_url_rule("/login", view_func=login, methods={"GET", "POST"})
 app.add_url_rule("/callback", view_func=callback)
-app.add_url_rule("/dashboard", view_func=dashboard)
+app.add_url_rule("/webmail", view_func=webmail)
 app.add_url_rule("/inbox/<string:email_id>", view_func=inbox)
 
 imap = ImapServer(config.imap_host, config.imap_port)
