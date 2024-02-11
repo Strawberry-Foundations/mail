@@ -6,7 +6,7 @@ from mail.utils.colors import *
 
 from mail.routes.index import index
 from mail.routes.login import login
-from mail.core.locale import Locale
+from mail.routes.api.callback import callback
 
 import os
 
@@ -21,6 +21,9 @@ app.config["SECRET_KEY"] = load_secret()
 
 app.add_url_rule("/", view_func=index)
 app.add_url_rule("/login", view_func=login, methods={"GET", "POST"})
+app.add_url_rule("/callback", view_func=callback)
+
+config = Config()
 
 
 class App:
