@@ -4,6 +4,7 @@ from mail import server_dir
 from mail.core.config import Config, config
 from mail.utils.utilities import load_secret
 from mail.utils.colors import *
+from mail.imap.client import ImapServer
 
 from mail.routes.index import index
 from mail.routes.login import login
@@ -11,7 +12,6 @@ from mail.routes.api.callback import callback
 from mail.routes.user.dashboard import dashboard
 
 import os
-
 
 app = Flask(
     __name__,
@@ -26,6 +26,11 @@ app.add_url_rule("/", view_func=index)
 app.add_url_rule("/login", view_func=login, methods={"GET", "POST"})
 app.add_url_rule("/callback", view_func=callback)
 app.add_url_rule("/dashboard", view_func=dashboard)
+
+imap = ImapServer(config.imap_host, config.imap_port)
+imap.connect()
+
+del imap
 
 
 class App:
