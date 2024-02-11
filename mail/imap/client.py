@@ -1,8 +1,15 @@
+import hashlib
+
 from flask import g
 
 from mail.utils.colors import *
 from mail.core.config import config
+from mail.utils.hash import generate_hash
 
+from email.header import decode_header
+from email.utils import parsedate_to_datetime
+
+import email
 import imaplib
 import socket
 
@@ -66,3 +73,84 @@ def get_imap():
         g.imap = connection
 
     return g.imap
+
+
+def get_all_emails(connection):
+    try:
+        status, messages = connection.select('INBOX')
+        if status == 'OK':
+            messages = int(messages[0])
+
+            emails = []
+            for i in range(messages, 0, -1):
+                status, msg_data = connection.fetch(str(i), '(RFC822)')
+                if status == 'OK':
+                    msg = email.message_from_bytes(msg_data[0][1])
+                    subject, subject_encoding = decode_header(msg['Subject'])[0]
+                    sender, encoding = decode_header(msg.get('From'))[0]
+                    date = parsedate_to_datetime(msg.get('Date')).strftime('%Y-%m-%d %H:%M:%S')
+
+                    subject = subject.decode(subject_encoding or 'utf-8') if subject_encoding else subject
+                    sender = sender.decode(encoding or 'utf-8') if encoding else sender
+
+                    email_info = {
+                        'id': generate_hash(i),
+                        'subject': subject,
+                        'sender': sender,
+                        'date': date
+                    }
+
+                    emails.append(email_info)
+
+        return emails
+
+    except Exception as e:
+        print(f"Error while getting email: {e}")
+        return []
+
+
+def get_email_by_id(email_id, connection):
+    status, messages = connection.select('INBOX')
+
+    status, message_data = connection.fetch(str(email_id), '(RFC822)')
+
+    if status == 'OK':
+        raw_email = message_data[0][1]
+        msg = email.message_from_bytes(raw_email)
+
+        sender, encoding = decode_header(msg.get('From'))[0]
+
+        if isinstance(sender, bytes):
+            sender = sender.decode(encoding or 'utf-8', 'ignore')
+
+        subject, encoding = decode_header(msg.get('Subject'))[0]
+
+        if isinstance(subject, bytes):
+            subject = subject.decode(encoding or 'utf-8', 'ignore')
+
+        receiver, encoding = decode_header(msg.get('To'))[0]
+
+        if isinstance(receiver, bytes):
+            receiver = receiver.decode(encoding or 'utf-8', 'ignore')
+
+        date = msg.get('Date')
+
+        content = ''
+        if msg.is_multipart():
+            for part in msg.walk():
+                if part.get_content_type() == 'text/plain':
+                    content = part.get_payload(decode=True).decode('utf-8', 'ignore')
+                    break
+        else:
+            content = msg.get_payload(decode=True).decode('utf-8', 'ignore')
+
+        return {
+            'id': email_id,
+            'sender': sender,
+            'receiver': receiver,
+            'subject': subject,
+            'date': date,
+            'content': content
+        }
+    else:
+        return None
