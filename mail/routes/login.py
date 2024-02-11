@@ -46,8 +46,6 @@ async def login():
             connection = get_imap_connection()
             connection.login(email, password)
 
-            error = False
-
             session["auth.email"] = email
             session["auth.password"] = password
 
