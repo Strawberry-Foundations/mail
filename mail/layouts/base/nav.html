@@ -10,9 +10,25 @@
     <div class="mdl-layout-spacer"></div>
 
     <nav class="mdl-navigation mdl-layout--large-screen-only">
-      <button class="mdl-navigation__link button-nocolor nav-btn--email">
+      <button class="mdl-navigation__link button-nocolor nav-btn--email" id="nav--user-email">
         {{ user_mail }}
       </button>
+
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect navbar--dropdown" for="nav--user-email">
+        <li style="padding-left: 20px">
+          <a href="/"><img src="/static/assets/svg/strawberry_foundations.svg" style="width: 70px;"></a>
+          <div style="float: right; margin-right: 20px; margin-top: 10px">
+              {{ user_mail }}
+          </div>
+        </li>
+
+        <li class="mdl-menu__item round navbar--dropdown-object">
+          <a href="/account">
+            <span class="material-symbols-outlined material-symbols-outlined--ul navbar--dropdown-object-icon">settings</span>
+            <div class="navbar--dropdown-object-text">Settings</div>
+          </a>
+        </li>
+      </ul>
     </nav>
 
   </div>
