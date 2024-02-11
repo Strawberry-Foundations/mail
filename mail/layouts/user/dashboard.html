@@ -1,11 +1,22 @@
 {% extends "base/base.html" %}
 {% block content %}
 <div class="content">
-  <center>
-    <h1>Test</h1>
-
-    {{ content }}
-  </center>
+  <ul>
+    {% for email in emails %}
+      <div class="email-list-container">
+        <a href="/inbox/{{ email.id }}">
+          <center>
+            <strong>{{ email.sender }}</strong>
+            <br>
+            <span>{{ email.subject }}</span>
+            <br>
+            <span>{{ email.date }}</span>
+            <br><br>
+          </center>
+        </a>
+      </div>
+    {% endfor %}
+  </ul>
 </div>
 
 {% endblock content %}
