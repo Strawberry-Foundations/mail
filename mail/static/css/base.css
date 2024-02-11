@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik');
 
+/* Main Content */
 .main-dark {
     background-color: #242729;
     color: white;
@@ -9,6 +10,7 @@
     font-family: 'Rubik', sans-serif;
 }
 
+/* Navbar */
 .navbar * {
     font-family: 'Rubik', sans-serif;
     text-decoration: none;
@@ -18,13 +20,72 @@
     margin-bottom: 3px;
 }
 
-.login-container {
+
+/* Login */
+.login-container * {
+    font-family: 'Rubik', sans-serif;
+}
+
+.login-box {
+    background-color: #3E4245;
+    height: 380px;
+    width: 650px;
+    border-radius: 25px;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-box h3 {
+    padding-top: 25px;
+}
+
+.login-box h5 {
+    margin-top: 0px;
+    padding-top: 25px;
+    font-weight: bold;
+}
+
+.input-box--text {
     height: 100px;
 }
 
-.login-container * {
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    font-family: 'Rubik', sans-serif;
+.input-field {
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #5D6669;
+    background-color: #242729;  
+    width: 300px;
+    padding: 10px;
+    outline: none;
+}
+
+.input-field:focus {
+    border-style: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.input-field--unfocus {
+    box-shadow: 0 0 0px rgba(0, 123, 255, 0.2); 
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+}
+
+.login-submit {
+    margin-top: 25px !important;
+    border-radius: 10px !important;
+    background-color: #a0e0e0 !important;
+    width: 150px !important;
+}
+
+.login-submit:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+
+/* Generic */
+.fg-white {
+    color: white !important;
 }
