@@ -4,7 +4,7 @@ from flask import render_template, request, redirect, session
 
 from mail.core.locale import get_preferred_language, Strings
 from mail.core.config import config
-from mail.imap.client import get_imap_connection
+from mail.imap.client import get_imap
 from mail.core.logger import logger
 from mail import STRAWBERRY_ID_URL
 
@@ -43,8 +43,9 @@ async def login():
         password = request.form['password']
 
         try:
-            connection = get_imap_connection()
-            connection.login(email, password)
+            imap = get_imap()
+            imap.connect()
+            imap.login(email, password)
 
             session["auth.email"] = email
             session["auth.password"] = password
