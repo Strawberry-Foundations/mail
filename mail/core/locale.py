@@ -5,8 +5,8 @@ import yaml
 
 
 class Languages(Enum):
-    GERMAN = "de-DE"
-    ENGLISH = "en-US"
+    GERMAN = "de-de"
+    ENGLISH = "en-de"
 
 
 class Locale:
@@ -34,8 +34,9 @@ class Strings:
         lo_string = None
 
         match self.language:
-            case "de-DE": lo_string = locales.locale_de_DE
-            case "en-US": lo_string = locales.locale_de_DE
+            case "de-de": lo_string = locales.locale_de_DE
+            case "en-us": lo_string = locales.locale_de_DE
+            case _: lo_string = locales.locale_en_US
 
         string = lo_string[string]
 
@@ -48,10 +49,10 @@ def get_preferred_language():
     if accept_language:
         languages = accept_language.replace(' ', '').split(',')
 
-        preferred_language = languages[0].split(';')[0]
+        preferred_language = languages[0].split(';')[0].lower()
 
         match preferred_language:
-            case "de-DE": return Languages.GERMAN.value
-            case "en-US": return Languages.ENGLISH.value
+            case "de-de": return Languages.GERMAN.value
+            case "en-us": return Languages.ENGLISH.value
 
     return None
