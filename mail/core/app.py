@@ -4,6 +4,7 @@ from mail import server_dir
 from mail.core.config import Config, config
 from mail.utils.utilities import load_secret
 from mail.utils.colors import *
+from mail.core.mail import imap
 
 from mail.routes.index import index
 from mail.routes.login import login
