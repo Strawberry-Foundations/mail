@@ -4,8 +4,6 @@ from mail.auth import require_login
 from mail.imap.client import get_imap, ImapServerException, get_email_by_id
 from mail.utils.hash import generate_hash
 
-import hashlib
-
 
 @require_login
 async def inbox(email_id):
@@ -25,7 +23,7 @@ async def inbox(email_id):
         imap.connect()
         imap.login(user_email, password)
 
-    email = get_email_by_id(generate_hash(email_id), imap.connection)
+    email = get_email_by_id(email_id, imap.connection)
 
     if display_format == "json":
         return email
