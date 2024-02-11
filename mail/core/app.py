@@ -6,6 +6,7 @@ from mail.utils.colors import *
 
 from mail.routes.index import index
 from mail.routes.login import login
+from mail.core.locale import Locale
 
 import os
 
@@ -32,6 +33,7 @@ class App:
             static_absolute = os.path.abspath(os.path.join(self.app.root_path, self.app.static_folder))
 
             print(f"   {GREEN}{BOLD}{UNDERLINE}Thanks for using Strawberry Mail Server!{CRESET}")
+            print(f"   {BLUE}{BOLD}Server Path:{CRESET} {server_dir}")
             print(f"   {BLUE}{BOLD}Root Path:{CRESET} {self.app.root_path}")
             print(f"   {BLUE}{BOLD}Template Path:{CRESET} {template_absolute}")
             print(f"   {BLUE}{BOLD}Static Path:{CRESET} {static_absolute}")
