@@ -1,7 +1,5 @@
-from flask import render_template
+from flask import redirect
 
 
 async def index():
-    return render_template("index.html", **{
-        "title": "Strawberry Mail"
-    })
+    return redirect("/dashboard")
