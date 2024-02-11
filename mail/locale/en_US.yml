@@ -10,3 +10,8 @@ login_sid: Login with Strawberry ID
 
 # Errors
 invalid_credentials: Invalid email or password
+
+# Webmail
+write: Write
+inbox: Inbox
+drafts: Drafts
