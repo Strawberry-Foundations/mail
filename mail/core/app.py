@@ -19,7 +19,7 @@ app = Flask(
 app.config["SECRET_KEY"] = load_secret()
 
 app.add_url_rule("/", view_func=index)
-app.add_url_rule("/login", view_func=login)
+app.add_url_rule("/login", view_func=login, methods={"GET", "POST"})
 
 
 class App:
