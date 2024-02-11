@@ -15,3 +15,6 @@ invalid_credentials: Invalid email or password
 write: Write
 inbox: Inbox
 drafts: Drafts
+sent: Sent
+trash: Trash
+maked: Marked
