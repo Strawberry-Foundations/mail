@@ -1,2 +1,8 @@
+# Head Titles
+title_welcome: Welcome to Strawberry Mail!
+
 # Login Strings
 welcome_back: Welcome back!
+username: Username
+password: Password
+login: Login
