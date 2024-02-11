@@ -1,4 +1,4 @@
-function change_tab(tabId) {
+function changeTab(tabId) {
   var tabContents = document.querySelectorAll('.tab-content');
 
   tabContents.forEach(function(content) {
@@ -7,8 +7,12 @@ function change_tab(tabId) {
 
   var selectedTab = document.getElementById(tabId);
   selectedTab.classList.add('active-tab');
-  
-  document.getElementById(tabId + "-btn").addEventListener("select", function() {
-    this.classList.add("sidebar--button-active")
+}
+
+function toggleActive(clickedButton) {
+  document.querySelectorAll('.sidebar--button').forEach(function(button) {
+    button.classList.remove('sidebar--button-active');
   });
+
+  clickedButton.classList.add('sidebar--button-active');
 }
