@@ -22,4 +22,11 @@ class Config:
         self.static_folder = config_data["vars"]["static_folder"]
         self.template_folder = config_data["vars"]["template_folder"]
 
+        self.smtp_host = config_data["mail"]["smtp_host"]
+        self.smtp_port = config_data["mail"]["smtp_port"]
+
+        self.imap_host = config_data["mail"]["imap_host"]
+        self.imap_port = config_data["mail"]["imap_port"]
+
+
 config = Config()
