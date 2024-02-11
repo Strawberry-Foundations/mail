@@ -5,7 +5,7 @@ from mail.imap.client import get_imap, ImapServerException, get_all_emails
 
 
 @require_login
-async def dashboard():
+async def webmail():
     try:
         imap = get_imap().test_connection()
 
