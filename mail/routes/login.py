@@ -36,7 +36,7 @@ async def login():
 
         session["auth.email"] = email
 
-        return redirect("/dashboard")
+        return redirect("/webmail")
 
     if request.method == "POST":
         email = request.form['email']
@@ -51,7 +51,7 @@ async def login():
             session["auth.password"] = password
 
             logger.log(f"{email} logged in")
-            return redirect("/dashboard")
+            return redirect("/webmail")
 
         except imaplib.IMAP4.error as err:
             logger.log(text=err)
