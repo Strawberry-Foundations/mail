@@ -7,3 +7,6 @@ username: Username
 password: Password
 login: Login
 login_sid: Login with Strawberry ID
+
+# Errors
+invalid_credentials: Invalid email or password
