@@ -1,0 +1,19 @@
+.email-list-container {
+  margin-top: 5px;
+  background-color: #3E4245;
+  width: 350px;
+  border-radius: 10px;
+  height: 100px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.email-list-container a {
+  text-decoration: none;
+  color: white;
+}
+
+.email-list-container:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  
+}
