@@ -9,21 +9,24 @@
 
       <div class="login-box">
         <h3>{{ strings.load("welcome_back") }}</h3>
-        <form action="" method="post">
+
+        <form method="post">
           <div class="input-box--text">
             <h5>{{ strings.load("username") }}</h5>
-            <input class="input-field fg-white" type="text" id="email">
+            <input class="input-field fg-white" type="text" id="email" name="email" required>
             <script>unfocus('email')</script>
           </div>
           
           <div class="input-box--text">
             <h5>{{ strings.load("password") }}</h5>
-            <input class="input-field fg-white" type="password" id="password">
+            <input class="input-field fg-white" type="password" id="password" name="password" required>
             <script>unfocus('password')</script>
           </div>
 
-          <input id="show-dialog" class="mdl-button mdl-js-button login-submit" type="submit" value="{{ strings.load('login') }}">
+          <input id="login_submit" name="login_submit" class="mdl-button mdl-js-button login-submit" type="submit" value="{{ strings.load('login') }}"><br>
+          <a href="/login?strawberry_id_auth" class="mdl-button mdl-js-button login-sid">{{ strings.load("login_sid") }}</a>
         </form>
+        
       </div>
     </div>
   </center>
