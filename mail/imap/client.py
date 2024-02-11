@@ -1,4 +1,5 @@
-from flask import g, session
+from flask import g
+
 from mail.utils.colors import *
 from mail.core.config import config
 
