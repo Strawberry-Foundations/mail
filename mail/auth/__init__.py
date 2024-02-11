@@ -1,5 +1,6 @@
 from flask import session, redirect
 from functools import wraps
+from mail.core.logger import logger
 
 
 async def is_user_authenticated(email):
@@ -12,12 +13,14 @@ async def is_user_authenticated(email):
 def require_login(view_func):
     @wraps(view_func)
     async def wrapper(*args, **kwargs):
-        if '_strawberryid.email' not in session or 'auth.email' not in session:
+        if '_strawberryid.email' not in session and 'auth.email' not in session:
+            logger.log(f"Unknown user tried to access {view_func.__name__}")
             return redirect("/login")
 
         email = session.get("auth.email")
 
         if not await is_user_authenticated(email):
+            logger.log(f"{email} (unknown email) tried to access {view_func.__name__}")
             return redirect("/login")
 
         return await view_func(*args, **kwargs)
