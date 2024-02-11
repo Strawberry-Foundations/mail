@@ -24,9 +24,14 @@
           </div>
 
           <input id="login_submit" name="login_submit" class="mdl-button mdl-js-button login-submit" type="submit" value="{{ strings.load('login') }}"><br>
-          <a href="/login?strawberry_id_auth" class="mdl-button mdl-js-button login-sid">{{ strings.load("login_sid") }}</a>
+          <a href="/login?strawberry_id_auth" class="mdl-button mdl-js-button login-sid">{{ strings.load("login_sid") }}</a>  
         </form>
         
+        {% if error %}
+        <div class="error-area">
+          <p>{{ error_msg }}</p>
+        </div>
+        {% endif %}
       </div>
     </div>
   </center>
