@@ -1,3 +1,4 @@
+/* Web Mail Content */
 .webmail-main-content hr {
   height: 1px;
   margin-top: 0px;
@@ -6,6 +7,14 @@
 .webmail-content {
   margin-left: 251px
 }
+
+.nav-btn--email {
+  background-color: #151616;
+  border-style: none;
+  cursor: pointer;
+}
+
+/* Email Container */
 
 .email-list-container {
   margin-top: 5px;
@@ -27,6 +36,7 @@
   
 }
 
+/* Sidebar */
 .sidebar {
   width: 260px;
   background-color: rgb(21, 22, 22);
@@ -43,7 +53,7 @@
 }
 
 .sidebar--spacer {
-  margin-top: 50px;
+  margin-top: 35px;
 }
 
 .sidebar--button {
@@ -85,16 +95,18 @@
 }
 
 
+/* Sidebar Draft Button */
 
 .btn--draft-new-mail {
   background-color: #3073AD !important;
   margin-top: 25px !important;
+  margin-left: -95px !important;
   border-radius: 15px !important;
-  width: 100px !important;
+  height: 50px !important;
+  width: 150px !important;
   text-transform: none !important;
   font-weight: bold !important;
   color: white !important;
-  height: 50px !important;
   border-bottom: 2px solid rgba(0, 0, 0, 0.24) !important;
 }
 
@@ -108,14 +120,16 @@
   font-weight: bold;
   position: absolute;
   top: 12.5px;
-  left: 50px
+  left: 60px
 }
 
 .btn--draft-new-mail--icon {
   position: absolute;
   top: 12.5px;
-  left: 10px
+  left: 30px
 }
+
+/* Tabs */
 
 .tab-content {
   display: none;
