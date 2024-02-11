@@ -4,7 +4,6 @@ from flask import g
 
 from mail.utils.colors import *
 from mail.core.config import config
-from mail.utils.hash import generate_hash
 
 from email.header import decode_header
 from email.utils import parsedate_to_datetime
@@ -94,7 +93,7 @@ def get_all_emails(connection):
                     sender = sender.decode(encoding or 'utf-8') if encoding else sender
 
                     email_info = {
-                        'id': generate_hash(i),
+                        'id': i,
                         'subject': subject,
                         'sender': sender,
                         'date': date
