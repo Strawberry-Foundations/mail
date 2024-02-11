@@ -7,6 +7,6 @@ async def login():
     strings = Strings(lang)
 
     return render_template("login.html", **{
-        "title": "Willkommen bei Strawberry Mail",
+        "title": strings.load("title_welcome"),
         "strings": strings,
     })
