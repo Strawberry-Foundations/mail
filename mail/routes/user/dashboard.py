@@ -1,5 +1,6 @@
-from flask import render_template
+from flask import render_template, session
 from mail.auth import require_login
+from mail.core.mail import imap
 
 
 @require_login
