@@ -1,9 +1,31 @@
 {% extends "base/base_minimal.html" %}
+
 {% block content %}
 <div class="content">
+  <script src="/static/js/login.js"></script>
   <center>
-    <h1>Test</h1>
+    <div class="login-container">
+      <img src="/static/assets/svg/strawberry_foundations.svg" alt="Strawberry Foundations Logo" width="200px">
+
+      <div class="login-box">
+        <h3>Willkommen zurück</h3>
+        <form action="#">
+          <div class="input-box--text">
+            <h5>Benutzername</h5>
+            <input class="input-field fg-white" type="text" id="email">
+            <script>unfocus('email')</script>
+          </div>
+          
+          <div class="input-box--text">
+            <h5>Passwort</h5>
+            <input class="input-field fg-white" type="password" id="password">
+            <script>unfocus('password')</script>
+          </div>
+
+          <input id="show-dialog" class="mdl-button mdl-js-button login-submit" type="submit" value="Anmelden">
+        </form>
+      </div>
+    </div>
   </center>
 </div>
-
 {% endblock content %}
