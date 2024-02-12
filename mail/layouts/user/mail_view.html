@@ -1,4 +1,71 @@
 {% extends "base/base.html" %}
 
 {% block content %}
+<div class="webmail-main-content">
+  <hr>
+
+  <div class="sidebar">
+    <center>
+      <a href="/webmail/write" class="mdl-button mdl-js-button btn--draft-new-mail">
+        <span class="material-symbols-outlined btn--draft-new-mail--icon">draw</span>
+        <p>{{ strings.load("write") }}</p>
+      </a>
+  
+      <div class="sidebar--spacer"></div>
+  
+      <a href="/webmail?index=inbox" class="mdl-button mdl-js-button sidebar--button {{ inbox_btn_css }}" id="inbox-btn">
+        <span class="material-symbols-outlined sidebar--button--icon">inbox</span>
+        <p>{{ strings.load("inbox") }}</p>
+      </a>
+      <a href="/webmail?index=drafts" class="mdl-button mdl-js-button sidebar--button {{ drafts_btn_css }}" id="drafts-btn">
+        <span class="material-symbols-outlined sidebar--button--icon">drafts</span>
+        <p>{{ strings.load("drafts") }}</p>
+      </a>
+      <a href="/webmail?index=sent" class="mdl-button mdl-js-button sidebar--button {{ sent_btn_css }}" id="sent-btn">
+        <span class="material-symbols-outlined sidebar--button--icon">send</span>
+        <p>{{ strings.load("sent") }}</p>
+      </a>
+      <a href="/webmail?index=marked" class="mdl-button mdl-js-button sidebar--button" id="marked-btn">
+        <span class="material-symbols-outlined sidebar--button--icon">label</span>
+        <p>{{ strings.load("marked") }}</p>
+      </a>
+      <a href="/webmail?index=trash" class="mdl-button mdl-js-button sidebar--button {{ trash_btn_css }}" id="trash-btn">
+        <span class="material-symbols-outlined sidebar--button--icon">delete</span>
+        <p>{{ strings.load("trash") }}</p>
+      </a>
+    </center>
+  </div>
+
+  <div class="webmail-view-content">
+    <div class="webmail-view-content--header">
+      <div class="webmail-view-content--spacer"></div>
+      <h3>{{ email.subject }}</h3>
+
+      <div class="webmail-view-content--header--mailbox-container">
+        <a href="/webmail?index={{ rmailbox }}">
+          {{ mailbox }}
+        </a>
+      </div>
+
+      <h6>
+        {{ email.sender_name }}
+        <a href="/webmail/write?to={{ email.sender_mail }}" class="webmail-view-content--header--rmail">
+          &lt;{{ email.sender_mail }}&gt;
+        </a>
+      </h6>
+      <hr>
+    </div>
+
+    <div class="webmail-view-content--inner">
+      <div class="webmail-view-content--inner--spacer"></div>
+      {{ email.content | safe }}
+    </div>
+  </div>
+
+</div>
+
+<script src="/static/js/webmail_tab.js"></script>
+
+
+
 {% endblock content %}
