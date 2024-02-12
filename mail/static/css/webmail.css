@@ -25,6 +25,71 @@
 }
 
 
+/* Webmail View */
+
+.webmail-view-content * {
+  font-family: Rubik;
+}
+
+.webmail-view-content h3 {
+  position: absolute;
+  margin-top: -80px;
+  margin-left: 270px;
+  font-weight: bold;
+}
+
+.webmail-view-content h6 {
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 272px;
+}
+
+.webmail-view-content--header {
+  height: 60px;
+  margin-top: 30px;
+}
+
+.webmail-view-content--inner {
+  margin-top: -70px;
+  margin-left: 270px;
+}
+
+.webmail-view-content--inner--spacer {
+  margin-top: 30px;
+}
+
+.webmail-view-content--spacer {
+  margin-top: 90px;
+}
+
+.webmail-view-content--header--rmail {
+  font-size: 14px;
+  color: #807F79
+}
+
+.webmail-view-content--header--mailbox-container {
+  border-radius: 5px;
+  background-color: #DDDDDD;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  float: right;
+  margin-right: 10px;
+  margin-top: -80px;
+}
+
+.webmail-view-content--header--mailbox-container a {
+  font-size: 13px;
+  color: #807F79;
+  text-decoration: none;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #DDDDDD;
+}
+
+
+
+
+
 /* Email Container */
 
 .mail-container--mail-content {
