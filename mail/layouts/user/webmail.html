@@ -52,7 +52,7 @@
             </label>
           </div>
 
-          <div class="email-list-container" onclick="redirectToMailView('{{ email.id }}')">
+          <div class="email-list-container" onclick="redirectToMailView('{{ email.id }}', 'inbox')">
             <hr>
             <div class="mail-container--mail-content" >
               <div class="mail-container--sender">
@@ -89,7 +89,7 @@
             </label>
           </div>
 
-          <div class="email-list-container" onclick="redirectToMailView('{{ email.id }}')">
+          <div class="email-list-container" onclick="redirectToMailView('{{ email.id }}', 'sent')">
             <hr>
             <div class="mail-container--mail-content" >
               <div class="mail-container--sender">
@@ -126,7 +126,7 @@
             </label>
           </div>
 
-          <div class="email-list-container" onclick="redirectToMailView('{{ email.id }}')">
+          <div class="email-list-container" onclick="redirectToMailView('{{ email.id }}', 'drafts')">
             <hr>
             <div class="mail-container--mail-content" >
               <div class="mail-container--sender">
@@ -163,7 +163,7 @@
             </label>
           </div>
 
-          <div class="email-list-container" onclick="redirectToMailView('{{ email.id }}')">
+          <div class="email-list-container" onclick="redirectToMailView('{{ email.id }}', 'flagged')">
             <hr>
             <div class="mail-container--mail-content" >
               <div class="mail-container--sender">
@@ -200,7 +200,7 @@
             </label>
           </div>
 
-          <div class="email-list-container" onclick="redirectToMailView('{{ email.id }}')">
+          <div class="email-list-container" onclick="redirectToMailView('{{ email.id }}', 'trash')">
             <hr>
             <div class="mail-container--mail-content" >
               <div class="mail-container--sender">
