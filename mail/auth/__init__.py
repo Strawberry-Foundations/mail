@@ -4,7 +4,7 @@ from mail.core.logger import logger
 
 
 async def is_user_authenticated(email):
-    if email == "julian@strawberryfoundations.xyz":
+    if email in ["julian@strawberryfoundations.xyz", "info@strawberryfoundations.xyz"]:
         return True
     else:
         return False
