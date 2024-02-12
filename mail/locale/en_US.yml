@@ -1,6 +1,9 @@
 # Head Titles
 title_welcome: Welcome to Strawberry Mail!
 
+# Generic Strings
+settings: Settings
+
 # Login Strings
 welcome_back: Welcome back!
 username: Username
