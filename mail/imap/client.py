@@ -8,6 +8,7 @@ from mail.utils.utilities import extract_name_from_email
 
 from email.header import decode_header
 from email.utils import parsedate_to_datetime
+from datetime import datetime, date
 
 import email
 import imaplib
@@ -88,7 +89,16 @@ def get_all_emails(connection):
                     msg = email.message_from_bytes(msg_data[0][1])
                     subject, subject_encoding = decode_header(msg['Subject'])[0]
                     sender, encoding = decode_header(msg.get('From'))[0]
-                    date = parsedate_to_datetime(msg.get('Date')).strftime('%Y-%m-%d %H:%M:%S')
+
+                    mail_date = parsedate_to_datetime(msg.get('Date')).strftime('%Y-%m-%d %H:%M:%S')
+
+                    imap_date = datetime.strptime(mail_date, "%Y-%m-%d %H:%M:%S")
+                    is_today = imap_date.date() == date.today()
+
+                    if is_today:
+                        mail_date = imap_date.strftime("%H:%M")
+                    else:
+                        mail_date = imap_date.strftime("%d. %b.")
 
                     subject = subject.decode(subject_encoding or 'utf-8') if subject_encoding else subject
                     sender = sender.decode(encoding or 'utf-8') if encoding else sender
@@ -100,7 +110,54 @@ def get_all_emails(connection):
                         'subject': subject,
                         'sender': sender,
                         'sender_name': sender_name,
-                        'date': date
+                        'date': mail_date
+                    }
+
+                    emails.append(email_info)
+
+        return emails
+
+    except Exception as e:
+        print(f"Error while getting email: {e}")
+        return []
+
+
+def get_sent_emails(connection):
+    emails = []
+
+    try:
+        status, messages = connection.select('SENT')
+        if status == 'OK':
+            messages = int(messages[0])
+
+            for i in range(messages, 0, -1):
+                status, msg_data = connection.fetch(str(i), '(RFC822)')
+                if status == 'OK':
+                    msg = email.message_from_bytes(msg_data[0][1])
+                    subject, subject_encoding = decode_header(msg['Subject'])[0]
+                    sender, encoding = decode_header(msg.get('From'))[0]
+
+                    mail_date = parsedate_to_datetime(msg.get('Date')).strftime('%Y-%m-%d %H:%M:%S')
+
+                    imap_date = datetime.strptime(mail_date, "%Y-%m-%d %H:%M:%S")
+                    is_today = imap_date.date() == date.today()
+
+                    if is_today:
+                        mail_date = imap_date.strftime("%H:%M")
+                    else:
+                        mail_date = imap_date.strftime("%d. %b.")
+
+                    subject = subject.decode(subject_encoding or 'utf-8') if subject_encoding else subject
+                    sender = sender.decode(encoding or 'utf-8') if encoding else sender
+
+                    sender_name = extract_name_from_email(sender).rstrip().strip('"')
+
+                    email_info = {
+                        'id': i,
+                        'subject': subject,
+                        'sender': sender,
+                        'sender_name': sender_name,
+                        'date': mail_date
                     }
 
                     emails.append(email_info)
