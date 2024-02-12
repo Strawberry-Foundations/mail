@@ -147,9 +147,41 @@
       </div>
     </div>
 
+    <!-- Marked/Starred/Flagged -->
     <div id="marked" class="tab-content">
-      <h2>Marked</h2>
-      <p>Content for marked tab</p>
+      <div class="webmail-content--header">
+        <h2>{{ strings.load("marked") }}</h2>
+        <hr>
+      </div>
+
+      <div class="webmail-content--inner">
+        {% for email in flagged_emails %}
+          <div class="mail-container--checkbox">
+            <label class="mail-container--checkbox-container">
+              <input type="checkbox" id="checkbox-mail-{{ email.id }}">
+              <span class="mail-container--checkbox-checkmark"></span>
+            </label>
+          </div>
+
+          <div class="email-list-container" onclick="redirectToMailView('{{ email.id }}')">
+            <hr>
+            <div class="mail-container--mail-content" >
+              <div class="mail-container--sender">
+                <strong>{{ email.sender_name }}</strong>
+              </div>
+
+              <div class="mail-container--subject">
+                <span>{{ email.subject }}</span>
+              </div>
+              
+              <span class="mail-container--date">{{ email.date }}</span>
+
+              <br>
+            </div>
+          </div>
+        {% endfor %}
+        <hr>
+      </div>
     </div>
 
     <!-- Trash -->
