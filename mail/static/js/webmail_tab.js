@@ -18,6 +18,6 @@ function toggleActive(clickedButton) {
 }
 
 function redirectToMailView(mail_id, mailbox) {
-  var urlConstructor = "/webmail/" + mailbox + "/" + mail_id + "?format=json";
+  var urlConstructor = "/webmail/" + mailbox + "/" + mail_id;
   window.location.href = urlConstructor;
 }
