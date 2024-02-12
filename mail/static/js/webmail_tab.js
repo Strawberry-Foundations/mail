@@ -17,7 +17,7 @@ function toggleActive(clickedButton) {
   clickedButton.classList.add('sidebar--button-active');
 }
 
-function redirectToMailView(mail_id) {
-  var urlConstructor = "/webmail/inbox/" + mail_id + "?format=json";
+function redirectToMailView(mail_id, mailbox) {
+  var urlConstructor = "/webmail/" + mailbox + "/" + mail_id + "?format=json";
   window.location.href = urlConstructor;
 }
