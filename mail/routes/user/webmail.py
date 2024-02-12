@@ -31,6 +31,7 @@ async def webmail():
     sent_emails = email.fetch_mails(MailBox.SENT)
     drafts_emails = email.fetch_mails(MailBox.DRAFTS)
     trash_emails = email.fetch_mails(MailBox.TRASH)
+    flagged_emails = email.fetch_flagged_mail()
 
     return render_template("user/webmail.html", **{
         "mailboxes": mailboxes,
@@ -38,6 +39,7 @@ async def webmail():
         "sent_emails": sent_emails,
         "drafts_emails": drafts_emails,
         "trash_emails": trash_emails,
+        "flagged_emails": flagged_emails,
         "strings": strings,
         "title": f"{strings.load('inbox')} - {session.get('auth.email')}",
         "user_mail": user_email,
