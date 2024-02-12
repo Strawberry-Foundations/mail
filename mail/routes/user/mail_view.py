@@ -1,12 +1,12 @@
 from flask import render_template, session, request
 
 from mail.auth import require_login
-from mail.imap.client import get_imap, ImapServerException, get_email_by_id
-from mail.utils.hash import generate_hash
+from mail.imap.client import get_imap, ImapServerException
+from mail.imap.mail import Email, MailBox
 
 
 @require_login
-async def inbox(email_id):
+async def mail_view(email_id, mailbox: str):
     display_format = "web"
 
     if "format" in request.args:
@@ -23,7 +23,16 @@ async def inbox(email_id):
         imap.connect()
         imap.login(user_email, password)
 
-    email = get_email_by_id(email_id, imap.connection)
+    email = Email(imap.connection)
+
+    match mailbox.lower():
+        case "inbox": mailbox = MailBox.INBOX
+        case "sent": mailbox = MailBox.SENT
+        case "drafts": mailbox = MailBox.DRAFTS
+        case "trash": mailbox = MailBox.TRASH
+        case "junk": mailbox = MailBox.JUNK
+
+    mail_content = email.fetch_email(email_id, mailbox)
 
     if display_format == "json":
-        return email
+        return mail_content
