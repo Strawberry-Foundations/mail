@@ -9,4 +9,4 @@ def load_secret():
 
 def extract_name_from_email(email_address):
     match = re.search(r'^(.*?)\s*<', email_address)
-    return match.group(1).strip() if match else None
+    return match.group(1).strip() if match else email_address
