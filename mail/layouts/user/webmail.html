@@ -49,26 +49,18 @@
 
             <div class="mail-container--checkbox">
               <label class="mail-container--checkbox-container">
-                <input type="checkbox">
+                <input type="checkbox" id="checkbox-mail-{{ email.id }}">
                 <span class="mail-container--checkbox-checkmark"></span>
               </label>
             </div>
 
             <div class="mail-container--mail-content" onclick="redirectToMailView('{{ email.id }}')">
-              test
-              {# <div class="mail-container--sender">
+              <div class="mail-container--sender">
                 <strong>{{ email.sender_name }}</strong>
-              </div> #}
-              
-              {# <label for="checkbox-mail-{{ email.id }}">
-                <input class="mail-container--checkbox-label" type="checkbox" id="checkbox-mail-{{ email.id }}">
-              </label> #}
-              
-              {# <br>
-              <span>{{ email.subject }}</span>
+                <span>..... {{ email.subject }}</span>
+                <span class="mail-container--date">{{ email.date }}</span>
+              </div>
               <br>
-              <span>{{ email.date }}</span>
-              <br><br> #}
             </div>
 
             
@@ -81,22 +73,22 @@
   
     <div id="sent" class="tab-content">
       <h2>Sent</h2>
-      <p>Hier ist der Inhalt für den Sent-Tab.</p>
+      <p>Content for sent tab</p>
     </div>
   
     <div id="drafts" class="tab-content">
       <h2>Drafts</h2>
-      <p>Hier ist der Inhalt für den Drafts-Tab.</p>
+      <p>Content for drafts tab</p>
     </div>
 
     <div id="marked" class="tab-content">
-      <h2>Drafts</h2>
-      <p>Hier ist der Inhalt für den Drafts-Tab.</p>
+      <h2>Marked</h2>
+      <p>Content for marked tab</p>
     </div>
 
     <div id="trash" class="tab-content">
-      <h2>Drafts</h2>
-      <p>Hier ist der Inhalt für den Drafts-Tab.</p>
+      <h2>Trash</h2>
+      <p>Content for trash tab</p>
     </div>
   </div>
 </div>
