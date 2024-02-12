@@ -21,15 +21,11 @@
 }
 
 .webmail-content--inner {
-  margin-top: 22px;
+  margin-top: 22px; 
 }
 
 
 /* Email Container */
-
-.mail-container--sender {
-  margin-left: 25px;
-}
 
 .mail-container--mail-content {
   cursor: pointer;
@@ -37,10 +33,22 @@
   width: auto;
 }
 
-.mail-container--date {
-  float: right;
-  margin-right: 15px
+.mail-container--sender {
+  position: absolute;
+  margin-left: 25px;
 }
+
+.mail-container--subject {
+  position: absolute;
+  margin-left: 250px;
+}
+
+.mail-container--date {
+  position: absolute;
+  right: 10px;
+}
+
+
 
 
 /* Checkbox */
@@ -49,7 +57,7 @@
   display: block;
   position: relative;
   padding-left: 35px;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
@@ -68,7 +76,7 @@
 
 .mail-container--checkbox-checkmark {
   position: absolute;
-  top: 0px;
+  top: 15px;
   left: 0;
   height: 15px;
   width: 15px;
