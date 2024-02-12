@@ -146,3 +146,49 @@ class Email:
 
         except Exception as err:
             raise ImapStatusException(f"Exception while fetching status: {err}")
+
+    def fetch_email(self, email_id, folder: MailBox):
+        status, messages = self.connection.select(folder.value)
+
+        status, message_data = self.connection.fetch(str(email_id), '(RFC822)')
+
+        if status == 'OK':
+            raw_email = message_data[0][1]
+            msg = message_from_bytes(raw_email)
+
+            sender, encoding = decode_header(msg.get('From'))[0]
+
+            if isinstance(sender, bytes):
+                sender = sender.decode(encoding or 'utf-8', 'ignore')
+
+            subject, encoding = decode_header(msg.get('Subject'))[0]
+
+            if isinstance(subject, bytes):
+                subject = subject.decode(encoding or 'utf-8', 'ignore')
+
+            receiver, encoding = decode_header(msg.get('To'))[0]
+
+            if isinstance(receiver, bytes):
+                receiver = receiver.decode(encoding or 'utf-8', 'ignore')
+
+            date = msg.get('Date')
+
+            content = ''
+            if msg.is_multipart():
+                for part in msg.walk():
+                    if part.get_content_type() == 'text/plain':
+                        content = part.get_payload(decode=True).decode('utf-8', 'ignore')
+                        break
+            else:
+                content = msg.get_payload(decode=True).decode('utf-8', 'ignore')
+
+            return {
+                'id': email_id,
+                'sender': sender,
+                'receiver': receiver,
+                'subject': subject,
+                'date': date,
+                'content': content
+            }
+        else:
+            return None
