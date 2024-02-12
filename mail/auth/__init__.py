@@ -1,13 +1,27 @@
 from flask import session, redirect
 from functools import wraps
+
 from mail.core.logger import logger
+from mail.core.config import config
+
+import imaplib
 
 
-async def is_user_authenticated(email):
-    if email in ["julian@strawberryfoundations.xyz", "info@strawberryfoundations.xyz"]:
+async def is_user_authenticated(email, password):
+    mail = None
+
+    try:
+        mail = imaplib.IMAP4_SSL(config.imap_host, config.imap_port)
+        mail.login(email, password)
+
         return True
-    else:
+
+    except Exception as e:
         return False
+
+    finally:
+        if 'mail' in locals():
+            mail.logout()
 
 
 def require_login(view_func):
@@ -18,8 +32,9 @@ def require_login(view_func):
             return redirect("/login")
 
         email = session.get("auth.email")
+        password = session.get("auth.password")
 
-        if not await is_user_authenticated(email):
+        if not await is_user_authenticated(email, password):
             logger.log(f"{email} (unknown email) tried to access {view_func.__name__}")
             return redirect("/login")
 
