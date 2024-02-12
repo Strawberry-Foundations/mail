@@ -10,7 +10,7 @@ from mail.routes.index import index
 from mail.routes.login import login
 from mail.routes.api.callback import callback
 from mail.routes.user.webmail import webmail
-from mail.routes.user.inbox import inbox
+from mail.routes.user.mail_view import mail_view
 
 import os
 
@@ -27,7 +27,7 @@ app.add_url_rule("/", view_func=index)
 app.add_url_rule("/login", view_func=login, methods={"GET", "POST"})
 app.add_url_rule("/callback", view_func=callback)
 app.add_url_rule("/webmail", view_func=webmail)
-app.add_url_rule("/webmail/inbox/<string:email_id>", view_func=inbox)
+app.add_url_rule("/webmail/<string:mailbox>/<string:email_id>", view_func=mail_view)
 
 imap = ImapServer(config.imap_host, config.imap_port)
 imap.connect()
