@@ -5,25 +5,118 @@
 }
 
 .webmail-content {
-  margin-left: 251px
+  margin-left: 251px;
 }
 
-.nav-btn--email {
-  background-color: #151616;
-  border-style: none;
-  cursor: pointer;
+.webmail-content * {
+  font-family: Rubik;
 }
+
+.webmail-content h2 {
+  margin-left: 25px;
+}
+
+.webmail-content--header {
+  height: 50px;
+}
+
+.webmail-content--inner {
+  margin-top: 22px;
+}
+
 
 /* Email Container */
 
-.email-list-container {
-  margin-top: 5px;
-  background-color: #3E4245;
-  width: 350px;
-  border-radius: 10px;
-  height: 100px;
+.mail-container--sender {
+  margin-left: 25px;
+}
+
+.mail-container--mail-content {
+  cursor: pointer;
+  margin-left: 50px;
+}
+
+
+/* Checkbox */
+.mail-container--checkbox {
+  margin-left: 20px;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.mail-container--checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.mail-container--checkbox-checkmark {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #3B3B3B;
+  border-radius: 2px;
+  border: solid 1px #575D62;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
+}
+
+.mail-container--checkbox-container:hover input ~ .mail-container--checkbox-checkmark {
+  cursor: pointer;
+}
+
+.mail-container--checkbox-container input:checked ~ .mail-container--checkbox-checkmark {
+  background-color: #3073AD;
+  animation: test 1s;
+}
+
+@keyframes test {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.mail-container--checkbox-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.mail-container--checkbox-container input:checked ~ .mail-container--checkbox-checkmark:after {
+  display: block;
+}
+
+.mail-container--checkbox-container .mail-container--checkbox-checkmark:after {
+  left: 4px;
+  top: 1px;
+  width: 3px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+.email-list-container {
+  background-color: #242729;
+  height: 50px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
 
 .email-list-container a {
@@ -32,8 +125,9 @@
 }
 
 .email-list-container:hover {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-  
+  background-color: #3E4245;
+  /* box-shadow: 0 0 5px rgba(0, 123, 255, 0.5), 0 17px 50px 0 rgba(0, 0, 0, 0.19); */
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); 
 }
 
 /* Sidebar */
