@@ -12,23 +12,23 @@
 
       <div class="sidebar--spacer"></div>
 
-      <a onclick="changeTab('inbox'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="inbox-btn" href="#inbox">
+      <a onclick="changeTab('inbox'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button sidebar--button-active" id="inbox-btn">
         <span class="material-symbols-outlined sidebar--button--icon">inbox</span>
         <p>{{ strings.load("inbox") }}</p>
       </a>
-      <a onclick="changeTab('drafts'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="drafts-btn" href="#drafts">
+      <a onclick="changeTab('drafts'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="drafts-btn">
         <span class="material-symbols-outlined sidebar--button--icon">drafts</span>
         <p>{{ strings.load("drafts") }}</p>
       </a>
-      <a onclick="changeTab('sent'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="sent-btn" href="#sent">
+      <a onclick="changeTab('sent'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="sent-btn">
         <span class="material-symbols-outlined sidebar--button--icon">send</span>
         <p>{{ strings.load("sent") }}</p>
       </a>
-      <a onclick="changeTab('marked'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="marked-btn" href="#marked">
+      <a onclick="changeTab('marked'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="marked-btn">
         <span class="material-symbols-outlined sidebar--button--icon">label</span>
         <p>{{ strings.load("marked") }}</p>
       </a>
-      <a onclick="changeTab('trash'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="trash-btn" href="#trash">
+      <a onclick="changeTab('trash'); toggleActive(this)" class="mdl-button mdl-js-button sidebar--button" id="trash-btn">
         <span class="material-symbols-outlined sidebar--button--icon">delete</span>
         <p>{{ strings.load("trash") }}</p>
       </a>
@@ -37,8 +37,46 @@
 
   <div class="webmail-content">
     <div id="inbox" class="tab-content active-tab">
-      <h2>Inbox</h2>
-      <p>Hier ist der Inhalt für den Inbox-Tab.</p>
+      <div class="webmail-content--header">
+        <h2>{{ strings.load("inbox") }}</h2>
+        <hr>
+      </div>
+
+      <div class="webmail-content--inner">
+        {% for email in emails %}
+          <div class="email-list-container">
+            <hr>
+
+            <div class="mail-container--checkbox">
+              <label class="mail-container--checkbox-container">
+                <input type="checkbox">
+                <span class="mail-container--checkbox-checkmark"></span>
+              </label>
+            </div>
+
+            <div class="mail-container--mail-content" onclick="redirectToMailView('{{ email.id }}')">
+              test
+              {# <div class="mail-container--sender">
+                <strong>{{ email.sender_name }}</strong>
+              </div> #}
+              
+              {# <label for="checkbox-mail-{{ email.id }}">
+                <input class="mail-container--checkbox-label" type="checkbox" id="checkbox-mail-{{ email.id }}">
+              </label> #}
+              
+              {# <br>
+              <span>{{ email.subject }}</span>
+              <br>
+              <span>{{ email.date }}</span>
+              <br><br> #}
+            </div>
+
+            
+          </div>
+        {% endfor %}
+        <hr>
+      </div>
+
     </div>
   
     <div id="sent" class="tab-content">
@@ -64,22 +102,6 @@
 </div>
 
 <script src="/static/js/webmail_tab.js"></script>
-
-  <!-- 
-  {% for email in emails %}
-    <div class="email-list-container">
-      <a href="/webmail/inbox/{{ email.id }}">
-        <center>
-          <strong>{{ email.sender }}</strong>
-          <br>
-          <span>{{ email.subject }}</span>
-          <br>
-          <span>{{ email.date }}</span>
-          <br><br>
-        </center>
-      </a>
-    </div>
-  {% endfor %} -->
 
 
 {% endblock content %}
