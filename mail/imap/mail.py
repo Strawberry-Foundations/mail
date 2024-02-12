@@ -1,4 +1,4 @@
-from mail.utils.utilities import extract_name_from_email
+from mail.utils.utilities import extract_name_from_email, extract_mail_from_email
 from mail.core.logger import logger
 from mail.err.imap import *
 
@@ -179,12 +179,32 @@ class Email:
                     if part.get_content_type() == 'text/plain':
                         content = part.get_payload(decode=True).decode('utf-8', 'ignore')
                         break
+
+                    elif part.get_content_type() == 'text/html':
+                        content = part.get_payload(decode=True).decode('utf-8', 'ignore')
+                        break
+
+                    else:
+                        content_type = part.get_content_type()
+                        content_disposition = str(part.get("Content-Disposition"))
+
+                        if "attachment" not in content_disposition:
+                            body = part.get_payload(decode=True)
+                            try:
+                                content = body.decode("utf-8")
+                            except:
+                                content = body
             else:
                 content = msg.get_payload(decode=True).decode('utf-8', 'ignore')
+
+            sender_name = extract_name_from_email(sender).rstrip().strip('"')
+            sender_mail = extract_mail_from_email(sender).rstrip().strip('"')
 
             return {
                 'id': email_id,
                 'sender': sender,
+                'sender_name': sender_name,
+                'sender_mail': sender_mail,
                 'receiver': receiver,
                 'subject': subject,
                 'date': date,
