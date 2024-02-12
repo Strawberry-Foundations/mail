@@ -55,6 +55,12 @@
     margin-top: 15px !important;
 }
 
+.nav-btn--email {
+    background-color: #151616;
+    border-style: none;
+    cursor: pointer;
+  }
+
 
 /* Login */
 .login-container * {
